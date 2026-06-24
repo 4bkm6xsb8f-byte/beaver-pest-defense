@@ -20,8 +20,8 @@ export default function ContactCTA() {
               </span>
             </div>
 
-            <h2 className="font-display font-black uppercase text-white leading-tight"
-              style={{ fontSize: "clamp(2rem, 4.5vw, 3.5rem)" }}>
+            <h2 className="font-display font-bold uppercase text-white leading-tight"
+              style={{ fontSize: "clamp(1.5rem, 3vw, 2.6rem)" }}>
               Pest Control That Works{" "}
               <span className="text-brand-lime">
                 So You Can Focus on What Matters.
@@ -60,7 +60,7 @@ export default function ContactCTA() {
 
           {/* Right: form */}
           <div className="bg-brand-charcoal border border-brand-border p-8">
-            <h3 className="font-display font-black uppercase text-white text-xl tracking-wide mb-6">
+            <h3 className="font-display font-bold uppercase text-white text-lg tracking-wide mb-6">
               Your Local Contact
               <span className="text-brand-lime">:</span>
             </h3>
@@ -110,7 +110,7 @@ export default function ContactCTA() {
 
               <button
                 type="submit"
-                className="w-full bg-brand-lime hover:bg-brand-lime-light text-brand-black font-display font-black uppercase tracking-wider py-4 text-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-lime focus-visible:ring-offset-2 focus-visible:ring-offset-brand-charcoal"
+                className="w-full bg-brand-lime hover:bg-brand-lime-light text-brand-black font-display font-bold uppercase tracking-wider py-3.5 text-base transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-lime focus-visible:ring-offset-2 focus-visible:ring-offset-brand-charcoal"
               >
                 Contact Your Local Expert →
               </button>

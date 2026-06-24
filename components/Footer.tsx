@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { SITE_BASE } from "@/lib/config";
 
 const PHONE = "(555) 843-2837";
 const YEAR = new Date().getFullYear();
@@ -48,12 +48,10 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8">
           {/* Brand */}
           <div className="md:col-span-1">
-            <Image
-              src="/beaver-pest-control/logo.png"
+            <img
+              src={`${SITE_BASE}/logo.png`}
               alt="Beaver Pest Defense"
-              width={120}
-              height={120}
-              className="h-24 w-auto mb-4"
+              className="h-32 w-auto mb-4"
             />
             <p className="font-display font-bold uppercase text-brand-lime text-xs tracking-widest mb-1">
               Relentless Protection. Guaranteed.

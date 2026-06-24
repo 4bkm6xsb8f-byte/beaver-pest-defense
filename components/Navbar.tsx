@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
+import { SITE_BASE } from "@/lib/config";
 
 const PHONE = "(555) 843-2837";
 const NAV_LINKS = [
@@ -29,27 +29,21 @@ export default function Navbar() {
           : "bg-brand-black/80 backdrop-blur-sm"
       }`}
     >
-      {/* Top accent line */}
       <div className="h-0.5 w-full bg-gradient-to-r from-brand-lime via-brand-lime-light to-brand-lime-dim" />
 
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
-        {/* Logo */}
+      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2">
         <a
           href="#"
           className="flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-lime rounded"
           aria-label="Beaver Pest Defense — home"
         >
-          <Image
-            src="/beaver-pest-control/logo.png"
+          <img
+            src={`${SITE_BASE}/logo.png`}
             alt="Beaver Pest Defense"
-            width={64}
-            height={64}
-            className="h-14 w-auto"
-            priority
+            className="h-20 w-auto"
           />
         </a>
 
-        {/* Desktop nav */}
         <ul className="hidden md:flex items-center gap-8">
           {NAV_LINKS.map((link) => (
             <li key={link.href}>
@@ -63,7 +57,6 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* CTA */}
         <div className="hidden md:flex items-center gap-4">
           <a
             href={`tel:${PHONE.replace(/\D/g, "")}`}
@@ -79,7 +72,6 @@ export default function Navbar() {
           </a>
         </div>
 
-        {/* Mobile menu button */}
         <button
           onClick={() => setOpen(!open)}
           className="md:hidden text-white p-2 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-lime"
@@ -90,7 +82,6 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Mobile drawer */}
       {open && (
         <div className="md:hidden bg-brand-charcoal border-t border-brand-border">
           <ul className="px-6 py-5 space-y-5">
