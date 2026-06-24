@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
+import { SITE_BASE } from "@/lib/config";
 
 const PHONE = "(555) 843-2837";
 const NAV_LINKS = [
@@ -30,12 +30,12 @@ export default function Navbar() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2">
         <a href="#" aria-label="Beaver Pest Defense — home"
            className="flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-lime rounded">
-          <Image
-            src="/logo.png"
+          <img
+            src={`${SITE_BASE}/logo.png`}
             alt="Beaver Pest Defense"
-            width={72} height={72}
+            width={72}
+            height={72}
             className="h-16 w-auto"
-            priority
           />
         </a>
 
@@ -56,7 +56,7 @@ export default function Navbar() {
             {PHONE}
           </a>
           <a href="#contact"
-             className="inline-flex items-center gap-1.5 bg-brand-lime hover:bg-brand-lime-light text-brand-black font-display font-black text-sm tracking-widest uppercase px-5 py-2.5 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-lime focus-visible:ring-offset-2 focus-visible:ring-offset-brand-black">
+             className="inline-flex items-center gap-1.5 bg-brand-lime hover:bg-brand-lime-light text-brand-black font-display font-bold text-sm tracking-widest uppercase px-5 py-2.5 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-lime focus-visible:ring-offset-2 focus-visible:ring-offset-brand-black">
             Get a Quote
           </a>
         </div>
@@ -81,7 +81,7 @@ export default function Navbar() {
             ))}
             <li>
               <a href="#contact"
-                 className="flex items-center justify-center bg-brand-lime text-brand-black font-display font-black text-sm tracking-widest uppercase py-3 mt-2">
+                 className="flex items-center justify-center bg-brand-lime text-brand-black font-display font-bold text-sm tracking-widest uppercase py-3 mt-2">
                 Get a Free Quote
               </a>
             </li>
