@@ -1,35 +1,43 @@
+import { SITE_BASE } from "@/lib/config";
+
 const PHONE = "(555) 843-2837";
 
 export default function Hero() {
   return (
     <section className="relative min-h-screen bg-brand-black flex items-center overflow-hidden">
+      {/* Building photo — right half */}
+      <div aria-hidden="true" className="absolute inset-y-0 right-0 w-full md:w-1/2 pointer-events-none">
+        <img
+          src={`${SITE_BASE}/building.jpg`}
+          alt=""
+          className="h-full w-full object-cover object-center"
+        />
+        {/* Gradient overlay: dark on left (blends into text panel), fade to semi-transparent on right */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: "linear-gradient(to right, #0A0A0A 0%, #0A0A0A 20%, rgba(10,10,10,0.7) 55%, rgba(10,10,10,0.35) 100%)",
+          }}
+        />
+      </div>
+
+      {/* Dark base for text side */}
       <div
         aria-hidden="true"
-        className="absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(ellipse 70% 80% at 65% 50%, #111111 0%, #0A0A0A 100%)",
-        }}
+        className="absolute inset-y-0 left-0 w-full md:w-1/2"
+        style={{ background: "#0A0A0A" }}
       />
 
       <div
         aria-hidden="true"
-        className="absolute right-0 top-0 bottom-0 w-1 opacity-60"
-        style={{
-          background: "linear-gradient(180deg, transparent 0%, #6DC02F 40%, #6DC02F 60%, transparent 100%)",
-        }}
-      />
-
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/4 select-none"
+        className="pointer-events-none absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/4 select-none md:block hidden"
         style={{ opacity: 0.04 }}
       >
         <ShieldWatermark size={600} />
       </div>
 
       <div className="relative mx-auto max-w-7xl px-6 pt-32 pb-20 md:pt-40 md:pb-28 w-full">
-        <div className="max-w-3xl">
+        <div className="max-w-3xl md:max-w-[55%]">
           <div className="flex items-center gap-3 mb-6">
             <ShieldBadgeSmall />
             <span className="font-display font-semibold text-brand-lime tracking-widest uppercase text-sm">
