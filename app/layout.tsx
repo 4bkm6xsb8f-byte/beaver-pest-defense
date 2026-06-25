@@ -23,11 +23,17 @@ export const metadata: Metadata = {
     "Beaver Pest Defense delivers reliable, discreet, and effective pest management solutions for commercial and corporate properties. Licensed, insured, locally owned.",
   keywords:
     "commercial pest control, business pest management, IPM, pest defense, office pest control, warehouse pest control, restaurant pest control",
+  metadataBase: new URL("https://www.beaverpestdefense.com"),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Beaver Pest Defense | Commercial Pest Control You Can Count On",
     description:
       "Reliable, discreet, and effective pest management for commercial and corporate properties.",
     type: "website",
+    url: "https://www.beaverpestdefense.com",
+    siteName: "Beaver Pest Defense",
   },
 };
 

@@ -60,8 +60,14 @@ export default function Footer() {
               Protecting buildings. Protecting businesses. Your trusted local commercial pest control partner.
             </p>
             <a
+              href="https://www.beaverpestdefense.com"
+              className="mt-3 block text-brand-silver hover:text-brand-lime font-sans text-sm transition-colors"
+            >
+              www.beaverpestdefense.com
+            </a>
+            <a
               href={`tel:${PHONE.replace(/\D/g, "")}`}
-              className="mt-4 inline-flex items-center gap-2 text-brand-lime hover:text-brand-lime-light font-sans font-semibold text-sm transition-colors"
+              className="mt-2 inline-flex items-center gap-2 text-brand-lime hover:text-brand-lime-light font-sans font-semibold text-sm transition-colors"
             >
               {PHONE}
             </a>
