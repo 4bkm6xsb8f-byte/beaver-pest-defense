@@ -83,7 +83,7 @@ export default function Footer() {
               {EMAIL}
             </a>
             <FacebookLink className="mt-4 inline-flex text-white/80 hover:text-brand-lime transition-colors" />
-            <p className="mt-5 text-brand-silver text-xs font-sans leading-relaxed">
+            <p className="mt-5 text-brand-silver text-sm font-sans leading-relaxed">
               Also serving {NEARBY_COMMUNITIES.join(", ")}, and nearby communities.
             </p>
           </div>
@@ -130,7 +130,7 @@ export default function Footer() {
               <li>Saturday: 8am – 5pm</li>
               <li>Sunday: Emergency only</li>
             </ul>
-            <p className="mt-4 text-xs text-brand-silver font-sans">
+            <p className="mt-4 text-sm text-brand-silver font-sans">
               Emergency service available 24/7 — call the main line.
             </p>
             <a

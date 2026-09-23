@@ -213,7 +213,7 @@ export default function ContactCTA() {
                   </p>
                 )}
 
-                <p className="text-xs text-brand-silver text-center font-sans">
+                <p className="text-sm text-brand-silver text-center font-sans">
                   We&apos;ll follow up within 2 business hours.
                 </p>
               </form>

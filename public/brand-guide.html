@@ -267,7 +267,7 @@
             This guide defines the visual identity, tone, and application standards for Beaver Pest Defense.
             All marketing materials, digital assets, and client-facing communications must adhere to these specifications.
           </p>
-          <p style="margin-top:0.5rem; font-size:0.8rem; color:#555;">Version 1.0 · June 2026 · Confidential</p>
+          <p style="margin-top:0.5rem; font-size:0.8rem; color:#555;">Version 1.1 · September 2026 · Confidential</p>
         </div>
       </div>
     </div>
@@ -508,7 +508,10 @@
         <ul style="list-style:none; display:flex; flex-direction:column; gap:0.5rem;">
           <li style="font-size:0.85rem; color:var(--silver);">Brand Lime (#6DC02F) is the <em>only</em> accent color. Do not introduce additional accent hues (red, blue, orange) in brand materials.</li>
           <li style="font-size:0.85rem; color:var(--silver);">All backgrounds must fall within the Black–Charcoal–Dark Panel range for brand consistency.</li>
-          <li style="font-size:0.85rem; color:var(--silver);">Lime on black passes WCAG AA contrast (4.5:1 for normal text). Use at 16px+ for text accessibility.</li>
+          <li style="font-size:0.85rem; color:var(--silver);">Lime on black measures 8.7:1 contrast — exceeds WCAG AAA (7:1) at any text size, including small labels and eyebrows. No minimum size restriction needed for accessibility.</li>
+          <li style="font-size:0.85rem; color:var(--silver);">Silver on black/charcoal measures ~11.5:1 and white on black ~19.8:1 — both far exceed AAA. Contrast is not the limiting factor for readability on this palette; weight, tracking, and size choices are (see rules below).</li>
+          <li style="font-size:0.85rem; color:var(--silver);">Never use Tailwind's <code>tracking-tight</code>/<code>tracking-tighter</code> utilities (or equivalent -0.025em+ negative letter-spacing) on Barlow Condensed display headlines at 700–900 weight. At that weight/size combination, tight negative tracking causes adjacent glyphs' anti-aliased edges to visually merge, reading as "fuzzy" text. Always use the exact letter-spacing specified per role in the Type Scale table below.</li>
+          <li style="font-size:0.85rem; color:var(--silver);">Any full sentence of body copy — not a short label, caption, or badge — must be set at 0.875rem (14px) minimum. 12px is reserved for short (2–5 word) uppercase labels/captions only, never for sentence-length text.</li>
           <li style="font-size:0.85rem; color:var(--silver);">The top accent rule is always the full lime-to-lime-dim gradient: <code>linear-gradient(90deg, #6DC02F, #4E8B21 60%, transparent)</code>.</li>
           <li style="font-size:0.85rem; color:var(--silver);">Never place lime (#6DC02F) text on white backgrounds — contrast fails WCAG AA.</li>
         </ul>
@@ -563,18 +566,20 @@
               <th style="padding:0.5rem; font-family:'Barlow Condensed',sans-serif; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--lime);">Font</th>
               <th style="padding:0.5rem; font-family:'Barlow Condensed',sans-serif; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--lime);">Weight</th>
               <th style="padding:0.5rem; font-family:'Barlow Condensed',sans-serif; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--lime);">Size (desktop)</th>
+              <th style="padding:0.5rem; font-family:'Barlow Condensed',sans-serif; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--lime);">Letter-spacing</th>
             </tr>
           </thead>
           <tbody>
-            <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.5rem;">Hero headline</td><td style="padding:0.5rem;">Barlow Condensed</td><td style="padding:0.5rem;">900</td><td style="padding:0.5rem;">clamp(2.8rem, 7vw, 6rem)</td></tr>
-            <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.5rem;">Section heading</td><td style="padding:0.5rem;">Barlow Condensed</td><td style="padding:0.5rem;">800</td><td style="padding:0.5rem;">clamp(1.8rem, 4vw, 3rem)</td></tr>
-            <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.5rem;">Sub-heading</td><td style="padding:0.5rem;">Barlow Condensed</td><td style="padding:0.5rem;">700</td><td style="padding:0.5rem;">1.5rem</td></tr>
-            <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.5rem;">Card title</td><td style="padding:0.5rem;">Barlow Condensed</td><td style="padding:0.5rem;">700</td><td style="padding:0.5rem;">1rem</td></tr>
-            <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.5rem;">Body copy</td><td style="padding:0.5rem;">Barlow</td><td style="padding:0.5rem;">400</td><td style="padding:0.5rem;">0.95–1rem</td></tr>
-            <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.5rem;">Labels / eyebrows</td><td style="padding:0.5rem;">Barlow Condensed</td><td style="padding:0.5rem;">700</td><td style="padding:0.5rem;">0.7–0.85rem</td></tr>
-            <tr><td style="padding:0.5rem;">Captions / meta</td><td style="padding:0.5rem;">Barlow</td><td style="padding:0.5rem;">400–500</td><td style="padding:0.5rem;">0.75rem</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.5rem;">Hero headline</td><td style="padding:0.5rem;">Barlow Condensed</td><td style="padding:0.5rem;">900</td><td style="padding:0.5rem;">clamp(2.8rem, 7vw, 6rem)</td><td style="padding:0.5rem;">-0.01em</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.5rem;">Section heading</td><td style="padding:0.5rem;">Barlow Condensed</td><td style="padding:0.5rem;">800</td><td style="padding:0.5rem;">clamp(1.8rem, 4vw, 3rem)</td><td style="padding:0.5rem;">0 to 0.03em</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.5rem;">Sub-heading</td><td style="padding:0.5rem;">Barlow Condensed</td><td style="padding:0.5rem;">700</td><td style="padding:0.5rem;">1.5rem</td><td style="padding:0.5rem;">0.05–0.08em</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.5rem;">Card title</td><td style="padding:0.5rem;">Barlow Condensed</td><td style="padding:0.5rem;">700</td><td style="padding:0.5rem;">1rem</td><td style="padding:0.5rem;">0.03–0.05em</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.5rem;">Body copy</td><td style="padding:0.5rem;">Barlow</td><td style="padding:0.5rem;">400</td><td style="padding:0.5rem;">0.95–1rem</td><td style="padding:0.5rem;">normal</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.5rem;">Labels / eyebrows</td><td style="padding:0.5rem;">Barlow Condensed</td><td style="padding:0.5rem;">700</td><td style="padding:0.5rem;">0.7–0.85rem</td><td style="padding:0.5rem;">0.1–0.2em</td></tr>
+            <tr><td style="padding:0.5rem;">Captions / meta</td><td style="padding:0.5rem;">Barlow</td><td style="padding:0.5rem;">400–500</td><td style="padding:0.5rem;">0.75rem</td><td style="padding:0.5rem;">normal, or 0.2em if uppercase</td></tr>
           </tbody>
         </table>
+        <p style="font-size:0.75rem; color:var(--silver); margin-top:0.75rem;">Never use Tailwind's <code>tracking-tight</code> (-0.025em) or <code>tracking-tighter</code> (-0.05em) utilities on a Barlow Condensed heading — both are more aggressive than any letter-spacing value in this table and cause bold/black-weight glyphs to visually merge at their edges.</p>
       </div>
     </div>
 
@@ -845,7 +850,7 @@
   <div style="background:var(--black); border-top:2px solid var(--lime); padding:2rem 0; margin-top:0;">
     <div class="page-wrap" style="display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
       <img src="./logo.png" alt="Beaver Pest Defense" style="height:60px; width:auto;" />
-      <p style="font-size:0.8rem; color:var(--silver);">Beaver Pest Defense Brand Standards Guide · Version 1.0 · June 2026 · Confidential — Internal Use Only</p>
+      <p style="font-size:0.8rem; color:var(--silver);">Beaver Pest Defense Brand Standards Guide · Version 1.1 · September 2026 · Confidential — Internal Use Only</p>
     </div>
   </div>
 
