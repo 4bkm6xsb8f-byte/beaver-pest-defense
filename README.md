@@ -19,7 +19,7 @@ Marketing website for Beaver Pest Defense, built with Next.js and exported as a 
 - `components/` - Navbar, hero, services, property types, contact CTA, footer, landing page template, social icons, and supporting page sections.
 - `lib/config.ts` - Static asset base path helper.
 - `lib/site.ts` - Business info constants (phone, email, Facebook, service area) shared across the site.
-- `public/` - Custom domain (CNAME), brand guide, logo, and site images.
+- `public/` - Custom domain (CNAME), brand guide, logo, and site images (`photo-*.jpg` are neutral stock photography, not real company photos — see CLAUDE.md).
 - `next.config.ts` - Static export configuration.
 - `tailwind.config.ts` - Brand tokens and Tailwind configuration.
 

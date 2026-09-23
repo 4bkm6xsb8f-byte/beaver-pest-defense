@@ -28,10 +28,8 @@ const barlow = Barlow({
 });
 
 export const metadata: Metadata = {
-  title: `Commercial & Residential Pest Control in ${CITY_STATE} | Beaver Pest Defense`,
-  description: `Beaver Pest Defense provides commercial and residential pest control in ${CITY_STATE}, including warehouses, property management, dental offices, hospitals, offices, restaurants, and homes. Licensed, insured, discreet service.`,
-  keywords:
-    "commercial pest control services, commercial exterminator near me, pest control for businesses, integrated pest management services, IPM pest control for businesses, warehouse pest control, rodent control for warehouses, pest control for property management companies, apartment pest control services, multifamily pest control, dental office pest control, medical office pest control, hospital pest control services, healthcare facility pest control, office building pest control, restaurant pest control, residential pest control, home pest control services, emergency pest control service, discreet pest control service, licensed and insured pest control, Milwaukee pest control",
+  title: `Milwaukee Pest Control | Beaver Pest Defense`,
+  description: `Licensed, insured commercial and residential pest control in ${CITY_STATE} — warehouses, offices, healthcare facilities, restaurants, and homes.`,
   metadataBase: new URL(SITE_URL),
   alternates: {
     canonical: "/",

@@ -35,7 +35,7 @@ export default function Hero() {
         <ShieldWatermark size={600} />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-6 pt-16 pb-10 md:pt-20 md:pb-14 w-full">
+      <div className="relative mx-auto max-w-7xl px-6 pt-28 pb-10 md:pt-32 md:pb-14 w-full">
         <div className="max-w-3xl md:max-w-[55%]">
           <div className="flex items-center gap-3 mb-6">
             <ShieldBadgeSmall />

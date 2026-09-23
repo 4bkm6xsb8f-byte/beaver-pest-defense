@@ -1,5 +1,5 @@
 import { SITE_BASE } from "@/lib/config";
-import { PHONE_DISPLAY, PHONE_TEL, EMAIL, SITE_URL, SERVICE_AREA } from "@/lib/site";
+import { PHONE_DISPLAY, PHONE_TEL, EMAIL, SITE_URL, SERVICE_AREA, NEARBY_COMMUNITIES } from "@/lib/site";
 import { FacebookLink } from "@/components/SocialIcons";
 
 const YEAR = new Date().getFullYear();
@@ -83,6 +83,9 @@ export default function Footer() {
               {EMAIL}
             </a>
             <FacebookLink className="mt-4 inline-flex text-white/80 hover:text-brand-lime transition-colors" />
+            <p className="mt-5 text-brand-silver text-xs font-sans leading-relaxed">
+              Also serving {NEARBY_COMMUNITIES.join(", ")}, and nearby communities.
+            </p>
           </div>
 
           {/* Services */}

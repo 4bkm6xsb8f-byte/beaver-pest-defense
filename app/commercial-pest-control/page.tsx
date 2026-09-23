@@ -6,7 +6,7 @@ const PATH = "/commercial-pest-control/";
 
 export const metadata: Metadata = {
   title: `Commercial Pest Control in ${CITY_STATE} | Beaver Pest Defense`,
-  description: `Commercial pest control services and commercial exterminator near you in ${CITY_STATE}. Licensed, insured, discreet pest control for businesses, offices, restaurants, and retail.`,
+  description: `Commercial exterminator services in ${CITY_STATE} for offices, retail, restaurants, and multi-tenant buildings. Licensed, insured, discreet.`,
   alternates: { canonical: PATH },
   openGraph: {
     title: `Commercial Pest Control in ${CITY_STATE} | Beaver Pest Defense`,
@@ -22,19 +22,33 @@ export default function CommercialPestControlPage() {
       serviceName="Commercial Pest Control"
       kicker={`Commercial Exterminator Near You in ${CITY_STATE}`}
       h1={`Commercial Pest Control in ${CITY_STATE}`}
-      intro={`Pest problems can affect your reputation, safety, compliance, and daily operations. Beaver Pest Defense provides commercial pest control programs for offices, warehouses, medical facilities, dental practices, restaurants, retail spaces, property management companies, and multi-tenant buildings throughout ${CITY_STATE} & the surrounding area.`}
+      intro={`A pest sighting at your business is never just a pest sighting — it's a reputation risk, a compliance issue, and a distraction from running your business. Beaver Pest Defense builds commercial pest control programs around how your business actually operates.`}
       blocks={[
         {
-          heading: "Commercial Pest Control for Businesses",
-          body: "Pest problems can affect your reputation, safety, compliance, and daily operations. Beaver Pest Defense provides commercial pest control programs for offices, warehouses, medical facilities, dental practices, restaurants, retail spaces, property management companies, and multi-tenant buildings. Our commercial pest control services include inspections, rodent monitoring, insect control, exclusion recommendations, documentation, scheduled service plans, and emergency pest response.",
+          heading: "One Program, Built Around Your Business",
+          body: "Every commercial account starts with a walkthrough of your specific property — entry points, storage areas, customer-facing spaces, and anything unique to your industry. From there we set a service plan for offices, retail stores, restaurants, warehouses, medical and dental facilities, and multi-tenant buildings alike, rather than a one-size-fits-all route stop.",
         },
         {
-          heading: "Integrated Pest Management for Businesses",
-          body: "Our IPM pest control for businesses focuses on prevention first — sealing entry points, removing conducive conditions, and monitoring pest activity — backed by targeted treatment when it's needed. It's a lower-risk, documentation-friendly approach built for offices, restaurants, and retail environments that need to stay open and compliant.",
+          heading: "Prevention First, Treatment When Needed",
+          body: "Our approach leans on integrated pest management: sealing entry points, removing conducive conditions, and ongoing monitoring, with targeted treatment when activity is found. It's a lower-risk approach for businesses that need to stay open, stay compliant, and keep chemical use to a minimum.",
         },
         {
           heading: "Discreet, Documented Service",
-          body: "Our unmarked service vehicles and uniformed technicians keep visits low-profile for customer-facing businesses. Every visit includes service reports and documentation so you have a clear compliance record for audits, health inspections, and property management requirements.",
+          body: "Unmarked service vehicles and uniformed technicians keep visits low-profile for customer-facing businesses. Every visit includes service reports and documentation so you have a clear compliance record for audits, health inspections, and property management requirements.",
+        },
+      ]}
+      faqs={[
+        {
+          q: "What's included in a commercial pest control visit?",
+          a: "A typical visit includes an interior and exterior inspection, treatment of any active activity, monitoring station checks, and a written service report. Frequency depends on your industry and pest pressure — we'll recommend a schedule during your first inspection.",
+        },
+        {
+          q: "Can you work around our business hours?",
+          a: "Yes. Many commercial clients prefer early morning, evening, or after-close service to avoid customers or staff. We'll schedule around whatever keeps your operation running smoothly.",
+        },
+        {
+          q: "Do you offer one-time service or only ongoing plans?",
+          a: "Both. Some businesses need a single treatment for an active issue; others set up a recurring plan for year-round prevention. We'll recommend what fits your situation during the free inspection.",
         },
       ]}
     />

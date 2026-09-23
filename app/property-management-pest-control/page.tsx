@@ -6,7 +6,7 @@ const PATH = "/property-management-pest-control/";
 
 export const metadata: Metadata = {
   title: `Pest Control for Property Managers in ${CITY_STATE} | Beaver Pest Defense`,
-  description: `Apartment pest control services and multifamily pest control for property management companies in ${CITY_STATE}. Reliable recurring service for apartment communities and multi-tenant buildings.`,
+  description: `Apartment and multifamily pest control for property management companies in ${CITY_STATE}. Recurring service, resident-friendly scheduling, documentation.`,
   alternates: { canonical: PATH },
   openGraph: {
     title: `Pest Control for Property Managers in ${CITY_STATE} | Beaver Pest Defense`,
@@ -20,21 +20,36 @@ export default function PropertyManagementPestControlPage() {
     <LandingPage
       path={PATH}
       serviceName="Property Management Pest Control"
-      kicker={`Pest Control for Property Managers in ${CITY_STATE}`}
+      kicker={`Multifamily & Apartment Pest Control in ${CITY_STATE}`}
       h1={`Pest Control for Property Management Companies in ${CITY_STATE}`}
-      intro={`We help property managers protect apartment communities, rental homes, office buildings, common areas, and multi-tenant properties with reliable recurring service.`}
+      intro={`One resident complaint about pests can turn into a lease dispute, a bad review, or a vacancy. Beaver Pest Defense builds recurring pest control programs for property managers that keep ahead of problems instead of chasing them.`}
+      image={{ src: "/photo-property-management.jpg", alt: "Multi-tenant apartment building exterior" }}
       blocks={[
         {
-          heading: "Property Management Pest Control",
-          body: "We help property managers protect apartment communities, rental homes, office buildings, common areas, and multi-tenant properties with reliable recurring service. Our apartment pest control services and multifamily pest control programs are built around resident turnover, unit access, and lease-compliance documentation.",
+          heading: "Built Around Resident Turnover",
+          body: "Move-outs, vacant units, and shared walls all create pest pressure that's different from a single-tenant building. We coordinate directly with your leasing and maintenance staff on unit access, so service happens on a predictable schedule without chasing down residents.",
         },
         {
-          heading: "Apartment & Multifamily Pest Control",
-          body: "From unit-by-unit treatment to building-wide rodent and insect control, we coordinate directly with your leasing office and maintenance team to minimize resident disruption while keeping every building on a consistent service schedule.",
+          heading: "Whole-Building Coverage, Not Just Complaint Response",
+          body: "Beyond individual units, we cover common areas, trash enclosures, basements, and building perimeters — the shared spaces where an infestation usually starts before it ever reaches a resident's door.",
         },
         {
-          heading: "Documentation Property Managers Can Rely On",
-          body: "Every visit includes service reports and documentation you can hand to owners, boards, and residents — plus emergency pest response when a unit or common area needs immediate attention.",
+          heading: "Reporting Owners, Boards & Residents Can See",
+          body: "Every visit includes a service report you can hand to ownership, a condo board, or a resident who has questions — plus emergency response when a unit needs immediate attention.",
+        },
+      ]}
+      faqs={[
+        {
+          q: "How do you handle access to individual units?",
+          a: "We coordinate directly with your leasing or maintenance office on scheduling and notice requirements, so unit access follows your property's existing procedures rather than creating extra work for your staff.",
+        },
+        {
+          q: "Do you service common areas as well as units?",
+          a: "Yes — trash enclosures, basements, laundry rooms, and building perimeters are typically where multifamily pest pressure starts, so they're part of a standard property management plan.",
+        },
+        {
+          q: "Can you provide a report for ownership or a condo board?",
+          a: "Every visit comes with a written service report. We can format it however your ownership group or board needs it for their records.",
         },
       ]}
     />

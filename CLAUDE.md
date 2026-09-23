@@ -41,18 +41,19 @@ Homepage: `app/page.tsx` composes all sections in order:
 
 ### SEO landing pages
 
-`components/LandingPage.tsx` is a shared template (Navbar + hero + content blocks + trust signals + CTA + Footer, plus a `Service` JSON-LD block) used by ten route pages under `app/<slug>/page.tsx`, each supplying its own `metadata` (title/description/canonical) and content:
+`components/LandingPage.tsx` is a shared template (Navbar + hero + content blocks + trust signals + CTA + optional FAQ + Footer, plus `Service` and — when `faqs` is passed — `FAQPage` JSON-LD) used by ten route pages under `app/<slug>/page.tsx`, each supplying its own `metadata` (title/description/canonical) and content:
 
 `/commercial-pest-control/` `/warehouse-pest-control/` `/property-management-pest-control/` `/healthcare-pest-control/` `/dental-office-pest-control/` `/hospital-pest-control/` `/office-building-pest-control/` `/residential-pest-control/` `/rodent-control/` `/integrated-pest-management/`
 
-Their CTAs link to `/#contact` (the homepage contact form) since there is no separate contact page.
+Their CTAs link to `/#contact` (the homepage contact form) since there is no separate contact page. Six of the ten pass an `image` prop (see Images below) for a two-column hero; the other four (commercial, hospital, rodent-control, IPM — broader/umbrella topics without a distinct photo) render text-only with the shield watermark. Copy across pages was deliberately de-duplicated (e.g. commercial vs. office-building, healthcare vs. hospital) to avoid near-duplicate-content SEO risk — when adding or editing a page, don't reuse whole sentences from another page's blocks.
 
 ## Business info & SEO
 
-- `lib/site.ts` — single source of truth for phone, email, Facebook URL, city/state, and service area (`Milwaukee, WI & Surrounding Areas`). Import from here rather than hardcoding.
-- `app/layout.tsx` sets site-wide metadata (title/description/OG) and injects a `PestControlService` (LocalBusiness) JSON-LD schema.
+- `lib/site.ts` — single source of truth for phone, email, Facebook URL, city/state, service area (`Milwaukee, WI & Surrounding Areas`), and `NEARBY_COMMUNITIES` (a representative, unverified suburb list used in footer copy for local-SEO long-tail — confirm actual coverage before treating it as authoritative). Import from here rather than hardcoding.
+- `app/layout.tsx` sets site-wide metadata (title/description/OG) and injects a `PestControlService` (LocalBusiness) JSON-LD schema. No `keywords` meta tag — it has no SEO value and was removed as keyword stuffing.
 - `app/robots.ts` and `app/sitemap.ts` generate static `/robots.txt` and `/sitemap.xml` at build time (`export const dynamic = "force-static"` is required for `output: "export"`). Add new routes to the `ROUTES` array in `sitemap.ts` when adding pages.
 - `components/SocialIcons.tsx` exports `FacebookLink`, used in Navbar, Footer, and ContactCTA.
+- Meta descriptions should stay roughly 140-160 characters; title tags under ~60. Several unverified claims exist site-wide (e.g. "licensed and insured", the Facebook URL, business hours in the JSON-LD) — see the business owner before treating them as confirmed fact.
 
 ## Images
 
@@ -61,6 +62,8 @@ All `<img>` tags use `src={\`${SITE_BASE}/filename\`}` via `lib/config.ts`:
 export const SITE_BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 ```
 `NEXT_PUBLIC_BASE_PATH` is not set in CI (site serves at domain root), so `SITE_BASE` is always `""`. Do NOT use `next/image` — no server-side image optimization in static export.
+
+`public/photo-*.jpg` are neutral, non-deceptive stock photography (Pexels License — free for commercial use) chosen per landing-page topic (`photo-residential.jpg`, `photo-warehouse.jpg`, `photo-dental.jpg`, `photo-office.jpg`, `photo-healthcare.jpg`, `photo-property-management.jpg`). None depict Beaver Pest Defense's actual staff, vehicles, or facilities — don't caption or present them as if they do. If real company photography becomes available, swap these out via the `image` prop on the relevant `app/<slug>/page.tsx`.
 
 ## Static export / GitHub Pages notes
 

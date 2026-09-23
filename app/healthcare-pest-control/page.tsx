@@ -6,11 +6,11 @@ const PATH = "/healthcare-pest-control/";
 
 export const metadata: Metadata = {
   title: `Healthcare Facility Pest Control in ${CITY_STATE} | Beaver Pest Defense`,
-  description: `Healthcare facility pest control and hospital pest control services in ${CITY_STATE}. Integrated pest management built for medical environments — prevention, monitoring, and minimal disruption.`,
+  description: `Healthcare facility pest control in ${CITY_STATE} for clinics, urgent care, and medical offices. Low-disruption, documented, licensed and insured service.`,
   alternates: { canonical: PATH },
   openGraph: {
     title: `Healthcare Facility Pest Control in ${CITY_STATE} | Beaver Pest Defense`,
-    description: `Integrated pest management for hospitals, clinics, and medical facilities with an emphasis on prevention and documentation.`,
+    description: `Pest control for clinics and medical offices with an emphasis on prevention and documentation.`,
     url: `${SITE_URL}${PATH}`,
   },
 };
@@ -20,21 +20,36 @@ export default function HealthcarePestControlPage() {
     <LandingPage
       path={PATH}
       serviceName="Healthcare Facility Pest Control"
-      kicker={`Hospital & Healthcare Pest Control in ${CITY_STATE}`}
+      kicker={`Medical Office Pest Control in ${CITY_STATE}`}
       h1={`Healthcare Facility Pest Control in ${CITY_STATE}`}
-      intro={`Integrated pest management for healthcare environments with an emphasis on prevention, monitoring, reporting, and minimal disruption. Beaver Pest Defense serves hospitals, clinics, medical offices, and dental practices throughout ${CITY_STATE}.`}
+      intro={`Clinics, urgent care centers, and medical offices run on patient trust — and pest activity is one of the fastest ways to lose it. Beaver Pest Defense builds low-disruption pest control programs for healthcare facilities of every size.`}
+      image={{ src: "/photo-healthcare.jpg", alt: "Bright, modern medical office waiting room" }}
       blocks={[
         {
-          heading: "Hospital & Healthcare Pest Control",
-          body: "Integrated pest management for healthcare environments with an emphasis on prevention, monitoring, reporting, and minimal disruption. Our healthcare facility pest control programs are built around infection-control standards and patient safety — low-odor, low-disruption treatment methods and documentation your facility can present during accreditation and health inspections.",
+          heading: "Designed Around Patient Care, Not Around Us",
+          body: "Exam rooms, waiting areas, and supply storage all have different sensitivities. We schedule around patient flow, use low-odor treatment methods, and keep technicians briefed on which areas require extra care — so pest control never interrupts care.",
         },
         {
-          heading: "Medical Office Pest Control",
-          body: "From single-provider clinics to multi-department medical office buildings, we schedule service around patient hours and provide discreet, unmarked service vehicles so pest control never becomes a visible disruption to your waiting room or exam areas.",
+          heading: "From Single-Provider Clinics to Multi-Department Offices",
+          body: "A solo practitioner's office and a multi-specialty medical building need different levels of coordination. We scale the program to match — a simple recurring visit for a small clinic, or a coordinated schedule across departments for a larger facility.",
         },
         {
-          heading: "Compliance-Ready Documentation",
-          body: "Every visit is logged with service reports and documentation to support your facility's compliance and audit requirements, with emergency pest response available when an issue needs immediate attention.",
+          heading: "Documentation for Accreditation & Inspections",
+          body: "Every visit is logged with a written service report you can keep on file for accreditation reviews, health department inspections, or internal compliance records.",
+        },
+      ]}
+      faqs={[
+        {
+          q: "Can you treat while patients are being seen?",
+          a: "We schedule around your patient hours whenever possible and use low-odor, low-disruption methods. For sensitive areas like exam rooms, we coordinate timing directly with your staff.",
+        },
+        {
+          q: "Do you provide documentation for accreditation or health inspections?",
+          a: "Yes — every visit includes a written service report you can keep on file, and we can format documentation to match what your accrediting body or local health department requires.",
+        },
+        {
+          q: "What's different about pest control for a medical office versus a regular business?",
+          a: "Product selection, timing, and access to sensitive areas all need extra care in a healthcare setting. We use methods appropriate for clinical environments and coordinate closely with facility staff rather than treating it like a standard commercial stop.",
         },
       ]}
     />

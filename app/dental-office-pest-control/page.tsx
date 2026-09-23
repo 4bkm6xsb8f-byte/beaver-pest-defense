@@ -6,11 +6,11 @@ const PATH = "/dental-office-pest-control/";
 
 export const metadata: Metadata = {
   title: `Dental Office Pest Control in ${CITY_STATE} | Beaver Pest Defense`,
-  description: `Discreet dental office pest control in ${CITY_STATE}. Licensed, insured pest management for dental practices where cleanliness, patient comfort, and documentation matter.`,
+  description: `Discreet dental office pest control in ${CITY_STATE}. Scheduled around patient hours, low-odor treatment, licensed and insured.`,
   alternates: { canonical: PATH },
   openGraph: {
     title: `Dental Office Pest Control in ${CITY_STATE} | Beaver Pest Defense`,
-    description: `Discreet pest control for dental offices and clinics — cleanliness, patient comfort, and documentation.`,
+    description: `Discreet pest control for dental offices — cleanliness, patient comfort, and documentation.`,
     url: `${SITE_URL}${PATH}`,
   },
 };
@@ -20,21 +20,36 @@ export default function DentalOfficePestControlPage() {
     <LandingPage
       path={PATH}
       serviceName="Dental Office Pest Control"
-      kicker={`Discreet Pest Control Service in ${CITY_STATE}`}
+      kicker={`Discreet Pest Control for Dental Practices in ${CITY_STATE}`}
       h1={`Dental Office Pest Control in ${CITY_STATE}`}
-      intro={`Discreet pest control for dental offices, clinics, and medical facilities where cleanliness, patient comfort, and documentation matter.`}
+      intro={`Patients notice everything in a dental office — including anything that doesn't belong there. Beaver Pest Defense keeps dental practices in ${CITY_STATE} pest-free with scheduling and products built for a clinical environment.`}
+      image={{ src: "/photo-dental.jpg", alt: "Modern, clean dental treatment room" }}
       blocks={[
         {
-          heading: "Dental & Medical Office Pest Control",
-          body: "Discreet pest control for dental offices, clinics, and medical facilities where cleanliness, patient comfort, and documentation matter. Beaver Pest Defense schedules service before or after patient hours whenever possible, using unmarked vehicles and low-odor treatment methods.",
+          heading: "Scheduled Around Your Patients",
+          body: "We aim to service dental practices before opening, after closing, or between appointment blocks whenever possible, using unmarked vehicles so nothing in the waiting room signals a pest control visit.",
         },
         {
-          heading: "Built for Dental Practice Standards",
-          body: "Sterile environments, sensitive equipment, and patient trust are non-negotiable. Our technicians work around operatories, sterilization areas, and break rooms with targeted, minimal-disruption pest control and full service documentation for your records.",
+          heading: "Built for Sterile, Sensitive Spaces",
+          body: "Operatories, sterilization areas, and break rooms each need different handling. We use targeted, minimal-disruption treatment and keep a written record of what was done and where, so it's easy to show if a patient or inspector ever asks.",
         },
         {
-          heading: "Recurring, Reliable Service",
-          body: "Set up a recurring commercial plan that keeps your practice pest-free year-round, with emergency response available if an issue comes up between scheduled visits.",
+          heading: "A Recurring Plan, Not a One-Off Visit",
+          body: "Most practices set up a recurring plan to stay ahead of seasonal ants and occasional rodent activity around building entry points, with emergency response available if something comes up between visits.",
+        },
+      ]}
+      faqs={[
+        {
+          q: "Will patients see or smell anything during treatment?",
+          a: "We schedule around patient hours whenever possible and use low-odor products suited for clinical spaces, so most practices see no disruption to the patient experience.",
+        },
+        {
+          q: "Can you avoid operatories and sterile areas?",
+          a: "Yes. We coordinate with your office manager on which areas need special handling and adjust our treatment plan accordingly.",
+        },
+        {
+          q: "How often should a dental office be serviced?",
+          a: "Most practices do well with a recurring monthly or quarterly visit, adjusted based on what we find during the first inspection and your building's history of activity.",
         },
       ]}
     />

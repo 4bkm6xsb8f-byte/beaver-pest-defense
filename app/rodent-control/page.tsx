@@ -5,8 +5,8 @@ import { CITY_STATE, SITE_URL } from "@/lib/site";
 const PATH = "/rodent-control/";
 
 export const metadata: Metadata = {
-  title: `Rodent Control in ${CITY_STATE} | Rodent Control for Warehouses & Homes`,
-  description: `Rodent control services in ${CITY_STATE} for warehouses, offices, and homes. Monitoring, exclusion, and prevention-focused rodent management from a licensed and insured team.`,
+  title: `Rodent Control in ${CITY_STATE} | Beaver Pest Defense`,
+  description: `Rodent control in ${CITY_STATE} for warehouses, offices, and homes: monitoring, exclusion, and documented treatment from a licensed team.`,
   alternates: { canonical: PATH },
   openGraph: {
     title: `Rodent Control in ${CITY_STATE} | Beaver Pest Defense`,
@@ -20,21 +20,35 @@ export default function RodentControlPage() {
     <LandingPage
       path={PATH}
       serviceName="Rodent Control"
-      kicker={`Rodent Control for Warehouses & Homes in ${CITY_STATE}`}
+      kicker={`Mouse & Rat Control in ${CITY_STATE}`}
       h1={`Rodent Control in ${CITY_STATE}`}
-      intro={`Mice and rats bring health risks, property damage, and compliance headaches. Beaver Pest Defense provides rodent control for warehouses, offices, property management companies, and homes throughout ${CITY_STATE}.`}
+      intro={`Mice and rats don't just chew through boxes and insulation — they carry health risks and, in a commercial setting, compliance problems. Beaver Pest Defense treats the entry points and the activity, not just the symptoms.`}
       blocks={[
         {
-          heading: "Rodent Control for Warehouses & Commercial Properties",
-          body: "Large facilities are especially vulnerable to rodent activity — dock doors, stored goods, and expansive perimeters create easy entry points. Our program includes exterior bait stations, interior monitoring, exclusion recommendations, and documented inspection reports.",
+          heading: "Find the Entry Point First",
+          body: "A trap without an entry-point fix is a temporary win. Before we treat, we inspect for the gaps, utility penetrations, and rooflines rodents are actually using, then combine exclusion recommendations with active treatment.",
         },
         {
-          heading: "Residential Rodent Prevention",
-          body: "At home, rodents typically enter through foundation gaps, utility penetrations, and rooflines. We identify entry points, treat active activity, and seal what we can to prevent re-entry.",
+          heading: "Different Scale for Different Properties",
+          body: "A warehouse with dock doors and stored goods needs a different rodent program than a single-family home with a gap under the porch. We scale exterior bait stations, interior monitoring, and exclusion work to match the property.",
         },
         {
-          heading: "Monitoring, Documentation & Emergency Response",
-          body: "Every rodent control program includes ongoing monitoring and service reports, plus emergency pest response if activity is found between scheduled visits.",
+          heading: "Monitoring That Catches Activity Early",
+          body: "Ongoing monitoring — not just a one-time treatment — is what keeps rodent activity from coming back. We check stations, log findings, and adjust the plan as conditions change, with emergency response available if activity shows up between visits.",
+        },
+      ]}
+      faqs={[
+        {
+          q: "How do I know if I have a rodent problem?",
+          a: "Droppings, gnaw marks, scratching sounds in walls or ceilings, and grease marks along baseboards are the most common signs. A free inspection will confirm what's active and where.",
+        },
+        {
+          q: "How long does rodent control take to work?",
+          a: "Active activity is often reduced within the first couple of visits, but a full program — including exclusion work — typically runs over several weeks to make sure entry points stay sealed and activity doesn't return.",
+        },
+        {
+          q: "Do you handle both residential and commercial rodent issues?",
+          a: "Yes. We scale the program to the property — from a single-family home to a warehouse with dock doors — using the same inspect-exclude-monitor approach at whatever scale fits.",
         },
       ]}
     />
