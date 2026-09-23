@@ -55,6 +55,15 @@ Their CTAs link to `/#contact` (the homepage contact form) since there is no sep
 - `components/SocialIcons.tsx` exports `FacebookLink`, used in Navbar, Footer, and ContactCTA.
 - Meta descriptions should stay roughly 140-160 characters; title tags under ~60. Several unverified claims exist site-wide (e.g. "licensed and insured", the Facebook URL, business hours in the JSON-LD) — see the business owner before treating them as confirmed fact.
 
+## Contact form → QuoteIQ integration
+
+`components/ContactCTA.tsx`'s form submits directly to QuoteIQ's Contact Forms Inbound API (`lib/quoteiq.ts`) — `POST https://us-central1-quoteiq-2.cloudfunctions.net/submitFormV2` with `X-API-Key` and `{ form_id, data }`. This is a static export with no backend, so the call happens client-side; the Inbound API key is therefore visible in the shipped JS bundle by design (it can only create submissions on this one form, not read data) — a deliberate tradeoff made with the site owner rather than an oversight.
+
+- `QUOTEIQ_FORM_ID` in `lib/quoteiq.ts` is hardcoded (not sensitive — it's already public in the QuoteIQ-hosted form's own URL).
+- `NEXT_PUBLIC_QUOTEIQ_API_KEY` is a GitHub Actions repo secret (`QUOTEIQ_API_KEY`), injected at build time in `.github/workflows/deploy.yml`. For local dev, set it in `.env.local` (gitignored).
+- The QuoteIQ-side form ("Quote Request Form", https://quoteiq-2.web.app/forms/v2/vlyPsyZTtRXTyiZJbBR6) was showing "closed" as of this integration — it must be published/opened in the QuoteIQ dashboard before submissions will succeed. Until then, or if the API key isn't configured, submissions fail gracefully (an error message pointing to phone/email — see `ContactCTA.tsx`'s `status === "error"` branch) rather than crashing.
+- The payload field keys sent (`first_name`, `last_name`, `company`, `phone`, `property_type`, `message`) are reasonable snake_case guesses — QuoteIQ's docs say they should match the form's configured field labels. Verify against the actual QuoteIQ form once it's accessible and adjust `handleSubmit` in `ContactCTA.tsx` if the field names differ.
+
 ## Images
 
 All `<img>` tags use `src={\`${SITE_BASE}/filename\`}` via `lib/config.ts`:

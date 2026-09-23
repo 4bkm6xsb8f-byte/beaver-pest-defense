@@ -1,7 +1,11 @@
 "use client";
 
+import { useState, type FormEvent } from "react";
 import { PHONE_DISPLAY, PHONE_TEL, EMAIL, SERVICE_AREA } from "@/lib/site";
 import { FacebookLink } from "@/components/SocialIcons";
+import { submitToQuoteIQ } from "@/lib/quoteiq";
+
+type Status = "idle" | "submitting" | "success" | "error";
 
 const TRUST_SIGNALS = [
   "Licensed and insured",
@@ -15,6 +19,30 @@ const TRUST_SIGNALS = [
 ];
 
 export default function ContactCTA() {
+  const [status, setStatus] = useState<Status>("idle");
+
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const values = new FormData(form);
+
+    setStatus("submitting");
+    try {
+      await submitToQuoteIQ({
+        first_name: String(values.get("first-name") ?? ""),
+        last_name: String(values.get("last-name") ?? ""),
+        company: String(values.get("company") ?? ""),
+        phone: String(values.get("phone") ?? ""),
+        property_type: String(values.get("property-type") ?? ""),
+        message: String(values.get("message") ?? ""),
+      });
+      setStatus("success");
+      form.reset();
+    } catch {
+      setStatus("error");
+    }
+  }
+
   return (
     <section id="contact" className="bg-brand-black py-10 md:py-14">
       {/* Top rule */}
@@ -101,61 +129,94 @@ export default function ContactCTA() {
               <span className="text-brand-lime">:</span>
             </h3>
 
-            <form onSubmit={(e) => e.preventDefault()} className="space-y-4 font-sans">
-              <div className="grid grid-cols-2 gap-4">
-                <FormField id="first-name" label="First Name" type="text" autoComplete="given-name" placeholder="Jane" />
-                <FormField id="last-name" label="Last Name" type="text" autoComplete="family-name" placeholder="Smith" />
+            {status === "success" ? (
+              <div className="py-10 text-center">
+                <p className="font-display font-bold uppercase text-brand-lime text-lg mb-2">
+                  Request Received
+                </p>
+                <p className="text-brand-silver font-sans text-sm">
+                  Thanks — we&apos;ll follow up within 2 business hours. Need
+                  us sooner? Call{" "}
+                  <a href={`tel:${PHONE_TEL}`} className="text-brand-lime hover:text-brand-lime-light">
+                    {PHONE_DISPLAY}
+                  </a>
+                  .
+                </p>
               </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-4 font-sans">
+                <div className="grid grid-cols-2 gap-4">
+                  <FormField id="first-name" name="first-name" label="First Name" type="text" autoComplete="given-name" placeholder="Jane" />
+                  <FormField id="last-name" name="last-name" label="Last Name" type="text" autoComplete="family-name" placeholder="Smith" />
+                </div>
 
-              <FormField id="company" label="Company Name" type="text" autoComplete="organization" placeholder="Acme Corp" />
+                <FormField id="company" name="company" label="Company Name" type="text" autoComplete="organization" placeholder="Acme Corp" />
 
-              <FormField id="phone" label="Phone Number" type="tel" autoComplete="tel" placeholder="262-000-0000" />
+                <FormField id="phone" name="phone" label="Phone Number" type="tel" autoComplete="tel" placeholder="262-000-0000" />
 
-              <div>
-                <label htmlFor="property-type" className="block text-xs font-semibold uppercase tracking-widest text-brand-silver mb-1.5">
-                  Property Type
-                </label>
-                <select
-                  id="property-type"
-                  defaultValue=""
-                  required
-                  className="w-full bg-brand-dark border border-brand-border text-white text-sm px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-lime focus:border-transparent transition"
+                <div>
+                  <label htmlFor="property-type" className="block text-xs font-semibold uppercase tracking-widest text-brand-silver mb-1.5">
+                    Property Type
+                  </label>
+                  <select
+                    id="property-type"
+                    name="property-type"
+                    defaultValue=""
+                    required
+                    className="w-full bg-brand-dark border border-brand-border text-white text-sm px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-lime focus:border-transparent transition"
+                  >
+                    <option value="" disabled>Select property type…</option>
+                    <option>Office Building</option>
+                    <option>Retail Space</option>
+                    <option>Warehouse / Distribution Center</option>
+                    <option>Medical / Dental Facility</option>
+                    <option>Restaurant / Food Service</option>
+                    <option>Property Management / Multi-Tenant</option>
+                    <option>Residential</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label htmlFor="message" className="block text-xs font-semibold uppercase tracking-widest text-brand-silver mb-1.5">
+                    Additional Details <span className="normal-case font-normal">(optional)</span>
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows={3}
+                    className="w-full bg-brand-dark border border-brand-border text-white text-sm px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-lime focus:border-transparent transition resize-none placeholder:text-brand-border"
+                    placeholder="Describe your pest situation or any urgent concerns…"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={status === "submitting"}
+                  className="w-full bg-brand-lime hover:bg-brand-lime-light disabled:opacity-60 disabled:cursor-not-allowed text-brand-black font-display font-bold uppercase tracking-wider py-3.5 text-base transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-lime focus-visible:ring-offset-2 focus-visible:ring-offset-brand-charcoal"
                 >
-                  <option value="" disabled>Select property type…</option>
-                  <option>Office Building</option>
-                  <option>Retail Space</option>
-                  <option>Warehouse / Distribution Center</option>
-                  <option>Medical / Dental Facility</option>
-                  <option>Restaurant / Food Service</option>
-                  <option>Property Management / Multi-Tenant</option>
-                  <option>Residential</option>
-                  <option>Other</option>
-                </select>
-              </div>
+                  {status === "submitting" ? "Sending…" : "Contact Your Local Expert →"}
+                </button>
 
-              <div>
-                <label htmlFor="message" className="block text-xs font-semibold uppercase tracking-widest text-brand-silver mb-1.5">
-                  Additional Details <span className="normal-case font-normal">(optional)</span>
-                </label>
-                <textarea
-                  id="message"
-                  rows={3}
-                  className="w-full bg-brand-dark border border-brand-border text-white text-sm px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-lime focus:border-transparent transition resize-none placeholder:text-brand-border"
-                  placeholder="Describe your pest situation or any urgent concerns…"
-                />
-              </div>
+                {status === "error" && (
+                  <p className="text-xs text-red-400 text-center font-sans">
+                    Something went wrong sending your request. Please call{" "}
+                    <a href={`tel:${PHONE_TEL}`} className="underline hover:text-red-300">
+                      {PHONE_DISPLAY}
+                    </a>{" "}
+                    or email{" "}
+                    <a href={`mailto:${EMAIL}`} className="underline hover:text-red-300">
+                      {EMAIL}
+                    </a>{" "}
+                    instead.
+                  </p>
+                )}
 
-              <button
-                type="submit"
-                className="w-full bg-brand-lime hover:bg-brand-lime-light text-brand-black font-display font-bold uppercase tracking-wider py-3.5 text-base transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-lime focus-visible:ring-offset-2 focus-visible:ring-offset-brand-charcoal"
-              >
-                Contact Your Local Expert →
-              </button>
-
-              <p className="text-xs text-brand-silver text-center font-sans">
-                We&apos;ll follow up within 2 business hours.
-              </p>
-            </form>
+                <p className="text-xs text-brand-silver text-center font-sans">
+                  We&apos;ll follow up within 2 business hours.
+                </p>
+              </form>
+            )}
           </div>
         </div>
       </div>
@@ -191,12 +252,14 @@ function ContactRow({
 
 function FormField({
   id,
+  name,
   label,
   type,
   autoComplete,
   placeholder,
 }: {
   id: string;
+  name: string;
   label: string;
   type: string;
   autoComplete?: string;
@@ -209,6 +272,7 @@ function FormField({
       </label>
       <input
         id={id}
+        name={name}
         type={type}
         autoComplete={autoComplete}
         required
