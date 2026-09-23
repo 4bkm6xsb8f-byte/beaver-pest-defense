@@ -82,6 +82,26 @@ export const SITE_BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 - Any component with event handlers must be `"use client"`
 - New routes need `app/<slug>/page.tsx` (folder route, since `trailingSlash: true`) and an entry in `app/sitemap.ts`
 
+## Typography — follow the brand guide's type scale
+
+`public/brand-guide.html` (the client's approved brand standards doc) defines an authoritative type-weight table that the implementation must match — deviating from it (as an earlier pass did) produces text that looks visibly thinner/tighter than intended, which reads as "fuzzy":
+
+| Role | Font | Weight (Tailwind class) | Notes |
+|---|---|---|---|
+| Hero headline | Barlow Condensed | 900 (`font-black`) | e.g. `Hero.tsx` H1. Letter-spacing `-0.01em`, NOT Tailwind's `tracking-tight` (`-0.025em` — too aggressive, causes glyphs on a bold condensed face to visually merge) |
+| Section heading | Barlow Condensed | 800 (`font-extrabold`) | e.g. `WhyChooseUs`/`Services`/`PropertyTypes`/`ContactCTA` h2, landing-page H1s |
+| Sub-heading / card title | Barlow Condensed | 700 (`font-bold`) | Card headings, smaller in-page h2/h3s |
+| Labels / eyebrows | Barlow Condensed | 700 (`font-bold`) | Small uppercase kicker text — NOT `font-semibold` |
+| Primary buttons | Barlow Condensed | 900 (`font-black`) | Per the guide's UI-elements spec, not `font-bold` |
+| Body copy | Barlow | 400 (default) | Already correct — do not bump this; the guide specifies 400 explicitly |
+| Captions / meta | Barlow | 400–500 | Footer fine print etc. |
+
+When adding new headings or buttons, match this table rather than guessing a weight.
+
+## Approved brand claims not yet fully used
+
+`public/brand-guide.html`'s Brand Pillars section defines a concrete guarantee — *"If pests return within 30 days, we do too — at no charge."* — now included in the `TRUST_SIGNALS` list in `ContactCTA.tsx`/`LandingPage.tsx`. If more brand-guide content (taglines, pillar language) needs surfacing elsewhere on the site, it's a legitimate source to pull from since it's the client's own approved copy — unlike claims that would need to be invented.
+
 ## Custom Tailwind tokens
 
 | Token | Hex | Usage |

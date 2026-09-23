@@ -16,6 +16,7 @@ const TRUST_SIGNALS = [
   "Service reports and documentation",
   "Eco-conscious products whenever possible",
   "Free inspection or quote",
+  "If pests return within 30 days, we do too — at no charge",
 ];
 
 export default function ContactCTA() {
@@ -60,7 +61,7 @@ export default function ContactCTA() {
               </span>
             </div>
 
-            <h2 className="font-display font-bold uppercase text-white leading-tight"
+            <h2 className="font-display font-extrabold uppercase text-white leading-tight"
               style={{ fontSize: "clamp(1.5rem, 3vw, 2.6rem)" }}>
               Pest Control That Works{" "}
               <span className="text-brand-lime">
@@ -193,7 +194,7 @@ export default function ContactCTA() {
                 <button
                   type="submit"
                   disabled={status === "submitting"}
-                  className="w-full bg-brand-lime hover:bg-brand-lime-light disabled:opacity-60 disabled:cursor-not-allowed text-brand-black font-display font-bold uppercase tracking-wider py-3.5 text-base transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-lime focus-visible:ring-offset-2 focus-visible:ring-offset-brand-charcoal"
+                  className="w-full bg-brand-lime hover:bg-brand-lime-light disabled:opacity-60 disabled:cursor-not-allowed text-brand-black font-display font-black uppercase tracking-wider py-3.5 text-base transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-lime focus-visible:ring-offset-2 focus-visible:ring-offset-brand-charcoal"
                 >
                   {status === "submitting" ? "Sending…" : "Contact Your Local Expert →"}
                 </button>

@@ -33,7 +33,7 @@ export default function WhyChooseUs() {
 
       <div className="mx-auto max-w-7xl px-6">
         <h2
-          className="font-display font-bold uppercase text-center text-white tracking-wider mb-10"
+          className="font-display font-extrabold uppercase text-center text-white tracking-wider mb-10"
           style={{ fontSize: "clamp(1.2rem, 2.5vw, 1.8rem)" }}
         >
           Why Businesses{" "}
@@ -51,7 +51,7 @@ export default function WhyChooseUs() {
                   <r.icon />
                 </span>
               </div>
-              <h3 className="font-display font-semibold uppercase text-white text-sm leading-tight tracking-wide">
+              <h3 className="font-display font-bold uppercase text-white text-sm leading-tight tracking-wide">
                 {r.title}
               </h3>
               <p className="text-brand-silver text-sm leading-relaxed font-sans">

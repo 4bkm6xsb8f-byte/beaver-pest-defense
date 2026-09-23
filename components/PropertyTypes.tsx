@@ -16,13 +16,13 @@ export default function PropertyTypes() {
 
           <div>
             <p
-              className="font-display font-semibold uppercase text-brand-lime leading-tight"
+              className="font-display font-bold uppercase text-brand-lime leading-tight"
               style={{ fontSize: "clamp(0.85rem, 1.5vw, 1rem)" }}
             >
               Serving a Wide Range of
             </p>
             <h2
-              className="font-display font-bold uppercase text-white leading-tight mt-1"
+              className="font-display font-extrabold uppercase text-white leading-tight mt-1"
               style={{ fontSize: "clamp(1.5rem, 3vw, 2.4rem)" }}
             >
               Commercial &amp; Residential Properties

@@ -68,7 +68,7 @@ export default function Navbar() {
           </a>
           <a
             href="#contact"
-            className="inline-flex items-center gap-1.5 bg-brand-lime hover:bg-brand-lime-light text-brand-black font-display font-bold text-sm tracking-wider uppercase px-5 py-2.5 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-lime focus-visible:ring-offset-2 focus-visible:ring-offset-brand-black"
+            className="inline-flex items-center gap-1.5 bg-brand-lime hover:bg-brand-lime-light text-brand-black font-display font-black text-sm tracking-wider uppercase px-5 py-2.5 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-lime focus-visible:ring-offset-2 focus-visible:ring-offset-brand-black"
           >
             Get a Quote
           </a>
@@ -101,7 +101,7 @@ export default function Navbar() {
             <li>
               <a
                 href="#contact"
-                className="flex items-center justify-center bg-brand-lime text-brand-black font-display font-bold text-sm tracking-wider uppercase py-3 mt-2"
+                className="flex items-center justify-center bg-brand-lime text-brand-black font-display font-black text-sm tracking-wider uppercase py-3 mt-2"
               >
                 Get a Free Quote
               </a>

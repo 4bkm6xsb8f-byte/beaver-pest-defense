@@ -33,11 +33,11 @@ export default function Services() {
         <div className="grid md:grid-cols-5 gap-12 lg:gap-16 items-start">
           {/* Left: heading */}
           <div className="md:col-span-2">
-            <p className="font-display font-bold uppercase text-white leading-none text-balance"
+            <p className="font-display font-extrabold uppercase text-white leading-none text-balance"
               style={{ fontSize: "clamp(1.6rem, 3.5vw, 3rem)" }}>
               Commercial Pest Control
             </p>
-            <p className="font-display font-bold uppercase text-brand-lime leading-none text-balance"
+            <p className="font-display font-extrabold uppercase text-brand-lime leading-none text-balance"
               style={{ fontSize: "clamp(1.6rem, 3.5vw, 3rem)" }}>
               for Businesses
             </p>

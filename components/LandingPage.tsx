@@ -18,6 +18,7 @@ const TRUST_SIGNALS = [
   "Service reports and documentation",
   "Eco-conscious products whenever possible",
   "Free inspection or quote",
+  "If pests return within 30 days, we do too — at no charge",
 ];
 
 export type ContentBlock = {
@@ -118,11 +119,11 @@ export default function LandingPage({
                 <span className="text-brand-lime text-xs font-sans uppercase tracking-widest">{serviceName}</span>
               </nav>
 
-              <p className="font-display font-semibold text-brand-lime tracking-widest uppercase text-sm mb-4">
+              <p className="font-display font-bold text-brand-lime tracking-widest uppercase text-sm mb-4">
                 {kicker}
               </p>
               <h1
-                className="font-display font-bold uppercase text-white leading-tight"
+                className="font-display font-extrabold uppercase text-white leading-tight"
                 style={{ fontSize: "clamp(1.8rem, 4vw, 3.2rem)" }}
               >
                 {h1}
@@ -135,7 +136,7 @@ export default function LandingPage({
               <div className="mt-8 flex flex-col sm:flex-row gap-4">
                 <Link
                   href="/#contact"
-                  className="inline-flex items-center justify-center gap-2 bg-brand-lime hover:bg-brand-lime-light text-brand-black font-display font-bold uppercase tracking-wider px-8 py-4 text-base transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-lime focus-visible:ring-offset-2 focus-visible:ring-offset-brand-black"
+                  className="inline-flex items-center justify-center gap-2 bg-brand-lime hover:bg-brand-lime-light text-brand-black font-display font-black uppercase tracking-wider px-8 py-4 text-base transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-lime focus-visible:ring-offset-2 focus-visible:ring-offset-brand-black"
                 >
                   Get a Free Inspection
                 </Link>
@@ -210,7 +211,7 @@ export default function LandingPage({
             </p>
             <Link
               href="/#contact"
-              className="inline-flex items-center justify-center gap-2 bg-brand-lime hover:bg-brand-lime-light text-brand-black font-display font-bold uppercase tracking-wider px-6 py-3 text-sm transition-colors"
+              className="inline-flex items-center justify-center gap-2 bg-brand-lime hover:bg-brand-lime-light text-brand-black font-display font-black uppercase tracking-wider px-6 py-3 text-sm transition-colors"
             >
               Get a Free Quote →
             </Link>
@@ -227,7 +228,7 @@ export default function LandingPage({
             <div className="space-y-6">
               {faqs.map((f) => (
                 <div key={f.q} className="border-b border-brand-border pb-6 last:border-b-0 last:pb-0">
-                  <h3 className="font-display font-semibold text-white text-base mb-2">
+                  <h3 className="font-display font-bold text-white text-base mb-2">
                     {f.q}
                   </h3>
                   <p className="text-brand-silver font-sans text-sm leading-relaxed">

@@ -39,21 +39,21 @@ export default function Hero() {
         <div className="max-w-3xl md:max-w-[55%]">
           <div className="flex items-center gap-3 mb-6">
             <ShieldBadgeSmall />
-            <span className="font-display font-semibold text-brand-lime tracking-widest uppercase text-sm">
+            <span className="font-display font-bold text-brand-lime tracking-widest uppercase text-sm">
               Commercial &amp; Residential Pest Control You Can Count On
             </span>
           </div>
 
           <h1 className="leading-[0.95]">
             <span
-              className="block font-display font-bold uppercase text-white tracking-tight"
-              style={{ fontSize: "clamp(2rem, 4.5vw, 4.2rem)" }}
+              className="block font-display font-black uppercase text-white"
+              style={{ fontSize: "clamp(2rem, 4.5vw, 4.2rem)", letterSpacing: "-0.01em" }}
             >
               Commercial &amp; Residential
             </span>
             <span
-              className="block font-display font-bold uppercase text-brand-lime tracking-tight mt-1"
-              style={{ fontSize: "clamp(2rem, 4.5vw, 4.2rem)" }}
+              className="block font-display font-black uppercase text-brand-lime mt-1"
+              style={{ fontSize: "clamp(2rem, 4.5vw, 4.2rem)", letterSpacing: "-0.01em" }}
             >
               Pest Control in {CITY_STATE}
             </span>
@@ -74,7 +74,7 @@ export default function Hero() {
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
             <a
               href="#contact"
-              className="inline-flex items-center justify-center gap-2 bg-brand-lime hover:bg-brand-lime-light text-brand-black font-display font-bold uppercase tracking-wider px-8 py-4 text-base transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-lime focus-visible:ring-offset-2 focus-visible:ring-offset-brand-black"
+              className="inline-flex items-center justify-center gap-2 bg-brand-lime hover:bg-brand-lime-light text-brand-black font-display font-black uppercase tracking-wider px-8 py-4 text-base transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-lime focus-visible:ring-offset-2 focus-visible:ring-offset-brand-black"
             >
               Get a Free Inspection
               <ArrowRight />
