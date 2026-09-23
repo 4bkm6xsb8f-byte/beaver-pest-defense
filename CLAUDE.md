@@ -4,9 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-Beaver Pest Defense — single-page marketing website for a local pest control company. Static Next.js 15 export deployed to GitHub Pages via GitHub Actions.
+Beaver Pest Defense — marketing website for a local pest control company, serving Milwaukee, WI & surrounding areas. Static Next.js 15 export deployed to GitHub Pages via GitHub Actions. A single homepage plus a set of SEO landing pages for specific buyer types (commercial, warehouse, healthcare, residential, etc.).
 
-**Live URL:** https://www.beaverpestdefense.com  
+**Live URL:** https://beaverpestdefense.com (canonical apex domain; `www` redirects to it via GitHub Pages)  
 **GitHub repo:** https://github.com/4bkm6xsb8f-byte/beaver-pest-defense  
 **Local directory:** `~/Developer/Beaver_Pest_Defense`
 
@@ -27,17 +27,32 @@ npm run lint    # ESLint
 
 ## Architecture
 
-Single page: `app/page.tsx` composes all sections in order:
+Homepage: `app/page.tsx` composes all sections in order:
 
 **Navbar → Hero → WhyChooseUs → Services → PropertyTypes → ContactCTA → Footer**
 
-- `Navbar` — sticky; transparent-to-frosted on scroll; mobile drawer; `"use client"`
+- `Navbar` — sticky; transparent-to-frosted on scroll; mobile drawer; Facebook icon; `"use client"`
 - `Hero` — split panel: dark text left, `building.jpg` photo right with gradient blend
 - `WhyChooseUs` — 5 reason cards with inline SVG icons
-- `Services` — pest service cards
-- `PropertyTypes` — 6 commercial property categories with inline SVG icons
-- `ContactCTA` — contact info + form; `"use client"`
-- `Footer` — links, hours, logo
+- `Services` — pest service list, some items link to dedicated service landing pages
+- `PropertyTypes` — 7 commercial + residential property categories with inline SVG icons, each linking to a landing page
+- `ContactCTA` — contact info (phone/email/hours/service area/Facebook), trust signals, and form (includes "Residential" property type); `"use client"`
+- `Footer` — services/property links to landing pages, hours, logo, Facebook icon
+
+### SEO landing pages
+
+`components/LandingPage.tsx` is a shared template (Navbar + hero + content blocks + trust signals + CTA + Footer, plus a `Service` JSON-LD block) used by ten route pages under `app/<slug>/page.tsx`, each supplying its own `metadata` (title/description/canonical) and content:
+
+`/commercial-pest-control/` `/warehouse-pest-control/` `/property-management-pest-control/` `/healthcare-pest-control/` `/dental-office-pest-control/` `/hospital-pest-control/` `/office-building-pest-control/` `/residential-pest-control/` `/rodent-control/` `/integrated-pest-management/`
+
+Their CTAs link to `/#contact` (the homepage contact form) since there is no separate contact page.
+
+## Business info & SEO
+
+- `lib/site.ts` — single source of truth for phone, email, Facebook URL, city/state, and service area (`Milwaukee, WI & Surrounding Areas`). Import from here rather than hardcoding.
+- `app/layout.tsx` sets site-wide metadata (title/description/OG) and injects a `PestControlService` (LocalBusiness) JSON-LD schema.
+- `app/robots.ts` and `app/sitemap.ts` generate static `/robots.txt` and `/sitemap.xml` at build time (`export const dynamic = "force-static"` is required for `output: "export"`). Add new routes to the `ROUTES` array in `sitemap.ts` when adding pages.
+- `components/SocialIcons.tsx` exports `FacebookLink`, used in Navbar, Footer, and ContactCTA.
 
 ## Images
 
@@ -49,10 +64,11 @@ export const SITE_BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 ## Static export / GitHub Pages notes
 
-- `next.config.ts`: `output: "export"`, no `basePath`
-- Custom domain via `public/CNAME` (`www.beaverpestdefense.com`)
+- `next.config.ts`: `output: "export"`, `trailingSlash: true`, no `basePath`
+- Custom domain via `public/CNAME` (`beaverpestdefense.com`, apex — DNS in Cloudflare has A records for the apex pointing at GitHub Pages' 4 IPs, plus a `www` CNAME to the apex; GitHub Pages handles the `www` → apex redirect and cert once the apex is the configured custom domain)
 - `public/.nojekyll` prevents Jekyll processing
 - Any component with event handlers must be `"use client"`
+- New routes need `app/<slug>/page.tsx` (folder route, since `trailingSlash: true`) and an entry in `app/sitemap.ts`
 
 ## Custom Tailwind tokens
 

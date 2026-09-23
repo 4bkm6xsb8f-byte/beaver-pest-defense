@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { SITE_BASE } from "@/lib/config";
+import { PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
+import { FacebookLink } from "@/components/SocialIcons";
 
-const PHONE = "(555) 843-2837";
 const NAV_LINKS = [
   { label: "Why Us", href: "#why-us" },
   { label: "Services", href: "#services" },
@@ -58,11 +59,12 @@ export default function Navbar() {
         </ul>
 
         <div className="hidden md:flex items-center gap-4">
+          <FacebookLink className="text-white/80 hover:text-brand-lime transition-colors" />
           <a
-            href={`tel:${PHONE.replace(/\D/g, "")}`}
+            href={`tel:${PHONE_TEL}`}
             className="text-sm text-brand-silver hover:text-white transition-colors font-sans"
           >
-            {PHONE}
+            {PHONE_DISPLAY}
           </a>
           <a
             href="#contact"
@@ -103,6 +105,9 @@ export default function Navbar() {
               >
                 Get a Free Quote
               </a>
+            </li>
+            <li className="flex justify-center pt-2">
+              <FacebookLink className="text-white/80 hover:text-brand-lime transition-colors" />
             </li>
           </ul>
         </div>

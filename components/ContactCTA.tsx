@@ -1,12 +1,24 @@
 "use client";
 
-const PHONE = "(555) 843-2837";
+import { PHONE_DISPLAY, PHONE_TEL, EMAIL, SERVICE_AREA } from "@/lib/site";
+import { FacebookLink } from "@/components/SocialIcons";
+
+const TRUST_SIGNALS = [
+  "Licensed and insured",
+  "Locally owned",
+  "Discreet service available",
+  "Recurring commercial plans",
+  "Emergency pest response",
+  "Service reports and documentation",
+  "Eco-conscious products whenever possible",
+  "Free inspection or quote",
+];
 
 export default function ContactCTA() {
   return (
-    <section id="contact" className="bg-brand-black py-20 md:py-28">
+    <section id="contact" className="bg-brand-black py-10 md:py-14">
       {/* Top rule */}
-      <div className="brand-rule mx-auto max-w-7xl px-6 mb-12" />
+      <div className="brand-rule mx-auto max-w-7xl px-6 mb-6" />
 
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-start">
@@ -37,10 +49,19 @@ export default function ContactCTA() {
             <div className="mt-8 space-y-5">
               <ContactRow icon={<PhoneIcon />} label="Call Anytime">
                 <a
-                  href={`tel:${PHONE.replace(/\D/g, "")}`}
+                  href={`tel:${PHONE_TEL}`}
                   className="font-display font-bold text-xl text-brand-lime hover:text-brand-lime-light transition-colors"
                 >
-                  {PHONE}
+                  {PHONE_DISPLAY}
+                </a>
+              </ContactRow>
+
+              <ContactRow icon={<MailIcon />} label="Email">
+                <a
+                  href={`mailto:${EMAIL}`}
+                  className="font-display font-bold text-lg text-brand-lime hover:text-brand-lime-light transition-colors"
+                >
+                  {EMAIL}
                 </a>
               </ContactRow>
 
@@ -52,10 +73,25 @@ export default function ContactCTA() {
 
               <ContactRow icon={<MapPinIcon />} label="Service Area">
                 <p className="font-sans text-brand-silver text-sm">
-                  Serving commercial properties throughout the metro area and surrounding region
+                  Serving {SERVICE_AREA}
                 </p>
               </ContactRow>
+
+              <ContactRow icon={<FacebookRowIcon />} label="Follow Us">
+                <FacebookLink className="inline-flex items-center gap-2 font-sans text-brand-silver hover:text-brand-lime text-sm transition-colors" />
+              </ContactRow>
             </div>
+
+            <ul className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2">
+              {TRUST_SIGNALS.map((t) => (
+                <li key={t} className="flex items-start gap-2 text-brand-silver text-sm font-sans">
+                  <span className="text-brand-lime mt-0.5">
+                    <CheckIcon />
+                  </span>
+                  {t}
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* Right: form */}
@@ -73,7 +109,7 @@ export default function ContactCTA() {
 
               <FormField id="company" label="Company Name" type="text" autoComplete="organization" placeholder="Acme Corp" />
 
-              <FormField id="phone" label="Phone Number" type="tel" autoComplete="tel" placeholder="(555) 000-0000" />
+              <FormField id="phone" label="Phone Number" type="tel" autoComplete="tel" placeholder="262-000-0000" />
 
               <div>
                 <label htmlFor="property-type" className="block text-xs font-semibold uppercase tracking-widest text-brand-silver mb-1.5">
@@ -92,6 +128,7 @@ export default function ContactCTA() {
                   <option>Medical / Dental Facility</option>
                   <option>Restaurant / Food Service</option>
                   <option>Property Management / Multi-Tenant</option>
+                  <option>Residential</option>
                   <option>Other</option>
                 </select>
               </div>
@@ -213,6 +250,31 @@ function MapPinIcon() {
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
       <circle cx="12" cy="10" r="3" />
+    </svg>
+  );
+}
+
+function MailIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="2" y="4" width="20" height="16" rx="2" />
+      <path d="m2 7 10 6 10-6" />
+    </svg>
+  );
+}
+
+function FacebookRowIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.51 1.49-3.9 3.77-3.9 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.89h2.78l-.44 2.91h-2.34V22c4.78-.76 8.44-4.92 8.44-9.94z" />
+    </svg>
+  );
+}
+
+function CheckIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M20 6 9 17l-5-5" />
     </svg>
   );
 }

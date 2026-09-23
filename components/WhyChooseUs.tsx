@@ -28,8 +28,8 @@ const REASONS = [
 
 export default function WhyChooseUs() {
   return (
-    <section id="why-us" className="bg-brand-charcoal py-16 md:py-20">
-      <div className="brand-rule mx-auto max-w-7xl px-6 mb-10" />
+    <section id="why-us" className="bg-brand-charcoal py-8 md:py-10">
+      <div className="brand-rule mx-auto max-w-7xl px-6 mb-5" />
 
       <div className="mx-auto max-w-7xl px-6">
         <h2
@@ -62,7 +62,7 @@ export default function WhyChooseUs() {
         </div>
       </div>
 
-      <div className="brand-rule mx-auto max-w-7xl px-6 mt-10" />
+      <div className="brand-rule mx-auto max-w-7xl px-6 mt-5" />
     </section>
   );
 }

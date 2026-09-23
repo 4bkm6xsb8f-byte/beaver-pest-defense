@@ -1,15 +1,16 @@
 const PROPERTIES = [
-  { label: "Office\nBuildings", icon: OfficeBuildingIcon },
-  { label: "Retail\nSpaces", icon: RetailIcon },
-  { label: "Warehouses &\nDistribution Centers", icon: WarehouseIcon },
-  { label: "Medical &\nDental Facilities", icon: MedicalIcon },
-  { label: "Restaurants &\nFood Service", icon: RestaurantIcon },
-  { label: "Property Management\n& Multi-Tenant Sites", icon: MultiTenantIcon },
+  { label: "Office\nBuildings", icon: OfficeBuildingIcon, href: "/office-building-pest-control/" },
+  { label: "Retail\nSpaces", icon: RetailIcon, href: "/commercial-pest-control/" },
+  { label: "Warehouses &\nDistribution Centers", icon: WarehouseIcon, href: "/warehouse-pest-control/" },
+  { label: "Medical &\nDental Facilities", icon: MedicalIcon, href: "/healthcare-pest-control/" },
+  { label: "Restaurants &\nFood Service", icon: RestaurantIcon, href: "/commercial-pest-control/" },
+  { label: "Property Management\n& Multi-Tenant Sites", icon: MultiTenantIcon, href: "/property-management-pest-control/" },
+  { label: "Residential\nHomes", icon: ResidentialIcon, href: "/residential-pest-control/" },
 ];
 
 export default function PropertyTypes() {
   return (
-    <section id="properties" className="bg-brand-charcoal py-16 md:py-20">
+    <section id="properties" className="bg-brand-charcoal py-8 md:py-10">
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid md:grid-cols-3 gap-8 md:gap-12 items-center">
 
@@ -24,26 +25,32 @@ export default function PropertyTypes() {
               className="font-display font-bold uppercase text-white leading-tight mt-1"
               style={{ fontSize: "clamp(1.5rem, 3vw, 2.4rem)" }}
             >
-              Commercial Properties
+              Commercial &amp; Residential Properties
             </h2>
             <hr className="brand-rule mt-4 w-24" />
           </div>
 
           <div className="md:col-span-2">
-            <ul className="grid grid-cols-3 sm:grid-cols-6 gap-4">
+            <ul className="grid grid-cols-3 sm:grid-cols-7 gap-4">
               {PROPERTIES.map((p) => (
                 <li
                   key={p.label}
                   className="flex flex-col items-center text-center gap-2 group"
                 >
-                  <div className="h-14 w-14 flex items-center justify-center bg-brand-dark border border-brand-border group-hover:border-brand-lime-dim transition-colors">
+                  <a
+                    href={p.href}
+                    className="h-14 w-14 flex items-center justify-center bg-brand-dark border border-brand-border group-hover:border-brand-lime-dim transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-lime"
+                  >
                     <span className="text-brand-lime">
                       <p.icon />
                     </span>
-                  </div>
-                  <p className="text-brand-silver text-xs font-sans uppercase tracking-wide leading-tight whitespace-pre-line">
+                  </a>
+                  <a
+                    href={p.href}
+                    className="text-brand-silver text-xs font-sans uppercase tracking-wide leading-tight whitespace-pre-line hover:text-brand-lime transition-colors"
+                  >
                     {p.label}
-                  </p>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -108,6 +115,16 @@ function MultiTenantIcon() {
       <rect x="2" y="7" width="9" height="14" />
       <rect x="13" y="2" width="9" height="19" />
       <path d="M5 7V5a2 2 0 0 1 2-2h8" />
+    </svg>
+  );
+}
+
+function ResidentialIcon() {
+  return (
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M3 11l9-8 9 8" />
+      <path d="M5 10v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V10" />
+      <path d="M9 21v-6h6v6" />
     </svg>
   );
 }

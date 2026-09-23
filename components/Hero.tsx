@@ -1,6 +1,5 @@
 import { SITE_BASE } from "@/lib/config";
-
-const PHONE = "(555) 843-2837";
+import { PHONE_DISPLAY, PHONE_TEL, CITY_STATE } from "@/lib/site";
 
 export default function Hero() {
   return (
@@ -36,12 +35,12 @@ export default function Hero() {
         <ShieldWatermark size={600} />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-6 pt-32 pb-20 md:pt-40 md:pb-28 w-full">
+      <div className="relative mx-auto max-w-7xl px-6 pt-16 pb-10 md:pt-20 md:pb-14 w-full">
         <div className="max-w-3xl md:max-w-[55%]">
           <div className="flex items-center gap-3 mb-6">
             <ShieldBadgeSmall />
             <span className="font-display font-semibold text-brand-lime tracking-widest uppercase text-sm">
-              Commercial Pest Control You Can Count On
+              Commercial &amp; Residential Pest Control You Can Count On
             </span>
           </div>
 
@@ -50,22 +49,26 @@ export default function Hero() {
               className="block font-display font-bold uppercase text-white tracking-tight"
               style={{ fontSize: "clamp(2rem, 4.5vw, 4.2rem)" }}
             >
-              Protecting Your Building.
+              Commercial &amp; Residential
             </span>
             <span
               className="block font-display font-bold uppercase text-brand-lime tracking-tight mt-1"
               style={{ fontSize: "clamp(2rem, 4.5vw, 4.2rem)" }}
             >
-              Protecting Your Business.
+              Pest Control in {CITY_STATE}
             </span>
           </h1>
 
           <hr className="brand-rule my-7 w-32" />
 
           <p className="text-brand-silver text-base leading-relaxed font-sans max-w-2xl">
-            Beaver Pest Defense provides reliable, discreet, and effective pest
-            management solutions for commercial and corporate properties. We help
-            you maintain a clean, safe, and professional environment—year-round.
+            Beaver Pest Defense provides licensed and insured pest control for
+            businesses, property managers, healthcare facilities, warehouses,
+            dental offices, hospitals, and homes throughout {CITY_STATE} &amp;
+            the surrounding area. Our services include general pest control,
+            rodent prevention, insect control, integrated pest management,
+            inspection reports, emergency response, and discreet scheduled
+            service.
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
@@ -77,11 +80,11 @@ export default function Hero() {
               <ArrowRight />
             </a>
             <a
-              href={`tel:${PHONE.replace(/\D/g, "")}`}
+              href={`tel:${PHONE_TEL}`}
               className="inline-flex items-center justify-center gap-2 border border-brand-border hover:border-brand-lime text-brand-silver hover:text-white font-sans font-medium px-8 py-4 text-base transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-lime focus-visible:ring-offset-2 focus-visible:ring-offset-brand-black"
             >
               <PhoneIcon />
-              {PHONE}
+              {PHONE_DISPLAY}
             </a>
           </div>
 
