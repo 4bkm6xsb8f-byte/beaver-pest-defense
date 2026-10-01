@@ -31,16 +31,26 @@ export async function submitToQuoteIQ(data: Record<string, string>) {
     throw new QuoteIQError("QuoteIQ is not configured");
   }
 
-  const res = await fetch(QUOTEIQ_ENDPOINT, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-API-Key": QUOTEIQ_API_KEY,
-    },
-    body: JSON.stringify({ form_id: QUOTEIQ_FORM_ID, data }),
-  });
+  let res: Response;
+  try {
+    res = await fetch(QUOTEIQ_ENDPOINT, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-API-Key": QUOTEIQ_API_KEY,
+      },
+      body: JSON.stringify({ form_id: QUOTEIQ_FORM_ID, data }),
+    });
+  } catch (err) {
+    // Network-level failure (CORS block, DNS, offline, etc.) — fetch throws
+    // TypeError here rather than giving a response, so log what we can.
+    console.error("QuoteIQ submission network error:", err);
+    throw new QuoteIQError("QuoteIQ request failed before a response was received");
+  }
 
   if (!res.ok) {
+    const body = await res.text().catch(() => "");
+    console.error(`QuoteIQ submission failed (${res.status} ${res.statusText}):`, body);
     throw new QuoteIQError(`QuoteIQ submission failed (${res.status})`);
   }
 }
