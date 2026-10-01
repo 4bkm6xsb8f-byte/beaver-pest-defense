@@ -35,7 +35,7 @@ export default function ContactCTA() {
         company: String(values.get("company") ?? ""),
         phone: String(values.get("phone") ?? ""),
         property_type: String(values.get("property-type") ?? ""),
-        message: String(values.get("message") ?? ""),
+        message: String(values.get("message") || "No additional details provided."),
       });
       setStatus("success");
       form.reset();

@@ -57,13 +57,28 @@ Their CTAs link to `/#contact` (the homepage contact form) since there is no sep
 
 ## Contact form → QuoteIQ integration
 
-`components/ContactCTA.tsx`'s form submits directly to QuoteIQ's Contact Forms Inbound API (`lib/quoteiq.ts`) — `POST https://us-central1-quoteiq-2.cloudfunctions.net/submitFormV2` with `X-API-Key` and `{ form_id, data }`. This is a static export with no backend, so the call happens client-side; the Inbound API key is therefore visible in the shipped JS bundle by design (it can only create submissions on this one form, not read data) — a deliberate tradeoff made with the site owner rather than an oversight.
+`components/ContactCTA.tsx`'s form submits directly to QuoteIQ's Contact Forms Inbound API (`lib/quoteiq.ts`) — confirmed working end-to-end (curl + live browser UI test) as of 2026-10-01. This is a static export with no backend, so the call happens client-side; the Inbound API key is therefore visible in the shipped JS bundle by design (it can only create submissions on this one account/form, not read data) — a deliberate tradeoff made with the site owner rather than an oversight.
 
-- `QUOTEIQ_FORM_ID` in `lib/quoteiq.ts` is hardcoded (not sensitive — it's already public in the QuoteIQ-hosted form's own URL).
+**The endpoint, auth scheme, and required body fields do NOT match QuoteIQ's public help-center docs** (those describe a stale pre-migration version — see "If this breaks again" below). The actual working request:
+
+```
+POST https://us-central1-quoteiq-2.cloudfunctions.net/submitFormV2Api
+Content-Type: application/json
+Authorization: Bearer <QUOTEIQ_API_KEY>
+
+{
+  "user_id": "<QUOTEIQ_USER_ID>",
+  "company_id": "<QUOTEIQ_COMPANY_ID>",
+  "form_id": "<QUOTEIQ_FORM_ID>",
+  "data": { ...field values, snake_case keys matching the QuoteIQ form's labels... }
+}
+```
+
+- `QUOTEIQ_USER_ID`, `QUOTEIQ_COMPANY_ID`, `QUOTEIQ_FORM_ID` in `lib/quoteiq.ts` are hardcoded — none are sensitive (they just identify which QuoteIQ account/form to route to; the API key is what actually authorizes the write).
 - `NEXT_PUBLIC_QUOTEIQ_API_KEY` is a GitHub Actions repo secret (`QUOTEIQ_API_KEY`), injected at build time in `.github/workflows/deploy.yml`. For local dev, set it in `.env.local` (gitignored).
-- The QuoteIQ-side form ("Quote Request Form", https://quoteiq-2.web.app/forms/v2/vlyPsyZTtRXTyiZJbBR6) is open now. Until the API key is configured or the endpoint is reachable, submissions fail gracefully (an error message pointing to phone/email — see `ContactCTA.tsx`'s `status === "error"` branch) rather than crashing.
-- The payload field keys sent (`first_name`, `last_name`, `company`, `phone`, `property_type`, `message`) are reasonable snake_case guesses — QuoteIQ's docs say they should match the form's configured field labels. Verify against the actual QuoteIQ form once reachable and adjust `handleSubmit` in `ContactCTA.tsx` if the field names differ.
-- **KNOWN BROKEN (as of 2026-10-01): `QUOTEIQ_ENDPOINT` 404s.** Verified directly with `curl -X POST` (bypassing the browser/CORS entirely) — `https://us-central1-quoteiq-2.cloudfunctions.net/submitFormV2` returns a plain GCP "404 Page not found" for *any* method, including the exact request shape QuoteIQ's own current help-center article specifies. The docs explicitly warn that the feature's dashboard location moved ("Form Submissions V2" → "Settings → Self-Service → Contact Forms"), so the published Cloud Functions URL is very likely stale from before that migration. QuoteIQ's own docs say the guaranteed-current example lives inside the live dashboard: **Settings → Self-Service → Contact Forms → [open the form] → Quick Links → "How to Integrate" → "API Access (Advanced)" → Copy Sample.** Get that exact sample from the business owner (requires their QuoteIQ login — not something to type in on their behalf) and update `QUOTEIQ_ENDPOINT` (and the request shape, if it differs) in `lib/quoteiq.ts` accordingly. Don't re-guess the endpoint from docs again without live-testing it with `curl` first.
+- QuoteIQ's form has a **required "Message" field** — `ContactCTA.tsx`'s `handleSubmit` falls back to `"No additional details provided."` when the visitor leaves the (UI-optional) "Additional Details" textarea blank, so the field stays optional for the visitor without the submission getting rejected.
+- Network/non-OK failures are logged to the console with status + response body (`lib/quoteiq.ts`) — check devtools console first if submissions start failing again, before re-diagnosing from scratch.
+- **If this breaks again:** don't trust QuoteIQ's public docs (`intercom.help/quoteiq/...`) — they describe an old endpoint (`.../submitFormV2` with an `X-API-Key` header, no `user_id`/`company_id`) that 404s. Get the current sample from the business owner via the live dashboard — Settings → Self-Service → Contact Forms → [open the form] → Quick Links → "How to Integrate" → "API Access (Advanced)" → Copy Sample — and verify with `curl` before updating `lib/quoteiq.ts`.
 
 ## Images
 

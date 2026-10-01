@@ -1,18 +1,30 @@
 // QuoteIQ Contact Forms Inbound API integration.
-// https://intercom.help/quoteiq/en/articles/15197063-contact-forms-api-submit-forms-programmatically-inbound-api
 //
-// This is a static export with no backend, so this call happens directly from
-// the browser. The Inbound API key is therefore visible in the shipped JS
-// bundle / network tab — by design (see project docs). It is only capable of
-// creating form submissions on the one configured form, not reading data.
+// NOTE: QuoteIQ's public help-center docs (as of 2026-09) describe a stale
+// version of this endpoint (POST .../submitFormV2 with an X-API-Key header
+// and no user_id/company_id) that 404s. The values below were pulled from
+// the live "Copy Sample" output inside the QuoteIQ dashboard (Settings ->
+// Self-Service -> Contact Forms -> [form] -> Quick Links -> How to
+// Integrate -> API Access (Advanced)) and verified directly with curl.
+// If this ever breaks again, re-pull the sample from that dashboard panel
+// rather than trusting the public docs.
+//
+// This is a static export with no backend, so this call happens directly
+// from the browser. The Inbound API key is therefore visible in the shipped
+// JS bundle / network tab — by design (see project docs). It is only
+// capable of creating form submissions on this one account/form, not
+// reading data.
 
 export const QUOTEIQ_ENDPOINT =
-  "https://us-central1-quoteiq-2.cloudfunctions.net/submitFormV2";
+  "https://us-central1-quoteiq-2.cloudfunctions.net/submitFormV2Api";
 
-// The form ID is not sensitive — it's already public in the QuoteIQ-hosted
-// form's own URL (https://quoteiq-2.web.app/forms/v2/<id>) — so it's checked
-// into source rather than passed as a secret. The Inbound API key is the
-// only piece that needs to stay out of the repo; see NEXT_PUBLIC_QUOTEIQ_API_KEY.
+// None of these are sensitive: the form ID is already public in the
+// QuoteIQ-hosted form's own URL, and user_id/company_id just identify which
+// QuoteIQ account to route the submission to (the API key is what actually
+// authorizes the write). The Inbound API key is the only piece that needs
+// to stay out of the repo; see NEXT_PUBLIC_QUOTEIQ_API_KEY.
+export const QUOTEIQ_USER_ID = "rSewgdtEOjYxxMq6oyopEcMjX5l1";
+export const QUOTEIQ_COMPANY_ID = "rSewgdtEOjYxxMq6oyopEcMjX5l1";
 export const QUOTEIQ_FORM_ID = "vlyPsyZTtRXTyiZJbBR6";
 export const QUOTEIQ_API_KEY = process.env.NEXT_PUBLIC_QUOTEIQ_API_KEY ?? "";
 
@@ -37,9 +49,14 @@ export async function submitToQuoteIQ(data: Record<string, string>) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-API-Key": QUOTEIQ_API_KEY,
+        Authorization: `Bearer ${QUOTEIQ_API_KEY}`,
       },
-      body: JSON.stringify({ form_id: QUOTEIQ_FORM_ID, data }),
+      body: JSON.stringify({
+        user_id: QUOTEIQ_USER_ID,
+        company_id: QUOTEIQ_COMPANY_ID,
+        form_id: QUOTEIQ_FORM_ID,
+        data,
+      }),
     });
   } catch (err) {
     // Network-level failure (CORS block, DNS, offline, etc.) — fetch throws
