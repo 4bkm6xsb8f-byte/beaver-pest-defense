@@ -1,7 +1,7 @@
 export const SITE_URL = "https://beaverpestdefense.com";
 
-export const PHONE_DISPLAY = "262-933-1703";
-export const PHONE_TEL = "12629331703";
+export const PHONE_DISPLAY = "262-933-1709";
+export const PHONE_TEL = "12629331709";
 
 export const EMAIL = "info@beaverpestdefense.com";
 
